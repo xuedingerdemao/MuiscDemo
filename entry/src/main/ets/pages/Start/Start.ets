@@ -39,8 +39,8 @@ struct Advertisement {
       height: '100%'
     })
     .padding({
-      top: AppStorage.get("topHeight"),
-      bottom: AppStorage.get("bottomHeight")
+      top: JSON.parse(AppStorage.get("topHeight")),
+      bottom: JSON.parse(AppStorage.get('bottomHeight'))
     })
   }
 }

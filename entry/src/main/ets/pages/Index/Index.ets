@@ -90,8 +90,8 @@ struct HomeIndex {
     .backgroundColor('#3c3f41')
     .opacity(this.opacityNum)
     .padding({
-      top: AppStorage.get("topHeight"),
-      bottom: AppStorage.get("bottomHeight")
+      top: JSON.parse(AppStorage.get("topHeight")),
+      bottom: JSON.parse(AppStorage.get('bottomHeight'))
     })
   }
 }
