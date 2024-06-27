@@ -46,7 +46,7 @@ struct Mine {
 
         Column({ space: 12 }) {
           Row({ space: 8 }) {
-            Text('音乐')
+            Text('黑马云音乐')
               .fontColor(Color.White)
               .fontSize(20)
             Image($r('app.media.ic_vip'))

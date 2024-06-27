@@ -5,7 +5,11 @@ import { Want } from '@kit.AbilityKit';
 export default class EntryFormAbility extends FormExtensionAbility {
   onAddForm(want: Want) {
     // Called to return a FormBindingData object.
-    return formBindingData.createFormBindingData("");
+    const formId = want.parameters![formInfo.FormParam.IDENTITY_KEY]
+    // 这里写不到首选项
+    return formBindingData.createFormBindingData({
+      formId
+    });
   }
 
   onCastToNormalForm(formId: string) {

@@ -59,7 +59,7 @@ struct Moment {
                   .borderRadius(8)
                   .clip(true)
                   .onClick(()=>{
-                     // 播放
+                    // 播放
                   })
 
                   Row({ space: 20 }) {

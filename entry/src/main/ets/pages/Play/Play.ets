@@ -3,6 +3,8 @@ import { songItemType } from '../../models/music'
 import {  PlayStateType } from '../../models/playState'
 import animator from '@ohos.animator';
 import { SONG_KEY } from  '../../constants'
+import { AvPlayerManager } from '../../utils/AvPlayerManager';
+
 @Entry
 @Component
 struct Play {
@@ -50,7 +52,8 @@ struct Play {
       .height('100%')
       .type(ButtonType.Normal)
       .onClick(() => {
-         // 删除歌曲
+        // 删除歌曲
+        AvPlayerManager.remove(index)
       })
 
   }
@@ -243,6 +246,9 @@ struct Play {
                   .trackThickness(2)
                   .onChange((val) => {
                     // 拖拽进度
+                    // 将进度拖拽到固定的位置
+                    // video controller.seek()
+                    AvPlayerManager.player?.seek(val)
                   })
                 Text(this.number2time(this.playState.duration))
                   .fontSize(12)
@@ -281,6 +287,7 @@ struct Play {
                   .width(30)
                   .onClick(() => {
                     // 上一首
+                    AvPlayerManager.prevPlay()
                   })
 
                 // 播放按钮
@@ -290,6 +297,11 @@ struct Play {
                   .onClick(() => {
                     // 如果能点才执行逻辑
                     // 播放及动画
+                    if(this.playState.isPlay) {
+                      AvPlayerManager.pause()
+                    }else {
+                      AvPlayerManager.singlePlay(this.playState.playList[this.playState.playIndex])
+                    }
                   })
                 // 下一首
                 Image($r('app.media.ic_next'))
@@ -297,6 +309,7 @@ struct Play {
                   .width(30)
                   .onClick(() => {
                     // 下一首
+                    AvPlayerManager.nextPlay()
                   })
                 // 播放列表
                 Image($r('app.media.ic_song_list'))
@@ -409,6 +422,7 @@ struct Play {
               }
               .onClick(() => {
                 // 播放
+                AvPlayerManager.singlePlay(item)
               })
               .swipeAction({
                 end: this.deleteButton(index)

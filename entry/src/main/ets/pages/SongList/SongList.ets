@@ -1,5 +1,6 @@
 import { favoriteList } from '../../constants/index'
 import { songItemType } from '../../models/index'
+import { AvPlayerManager } from '../../utils/AvPlayerManager'
 
 @Entry
 @Component
@@ -183,7 +184,7 @@ struct SongList {
                 })
                 .onClick(() => {
                   // 播放
-
+                  AvPlayerManager.singlePlay(item)
                 })
               })
 
