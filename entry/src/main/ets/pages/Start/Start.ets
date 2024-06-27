@@ -23,24 +23,22 @@ struct Advertisement {
 
   build() {
     Stack({ alignContent: Alignment.TopEnd }) {
+      Image($r('app.media.003')).objectFit(ImageFit.Fill)
       Button(`跳过${this.time}`)
         .onClick(() => {
           window.findWindow("ad_win").destroyWindow()
         })
-        .margin(12)
+        .margin(
+          {
+            right: 20,
+            top: JSON.parse(AppStorage.get("topHeight"))
+          }
+        )
         .backgroundColor('#ccc')
         .fontColor('#fff')
     }
     .width('100%')
     .height('100%')
-    .backgroundImage($r('app.media.003'))
-    .backgroundImageSize({
-      width: '100%',
-      height: '100%'
-    })
-    .padding({
-      top: JSON.parse(AppStorage.get("topHeight")),
-      bottom: JSON.parse(AppStorage.get('bottomHeight'))
-    })
+
   }
 }
